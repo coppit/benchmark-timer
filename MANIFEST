@@ -3,8 +3,10 @@ LICENSE
 MANIFEST
 Makefile.PL
 README
-lib/Benchmark/Timer.pm
 delta.pl
+
+# The module files
+lib/Benchmark/Timer.pm
 
 # Tests
 t/00_loadlib.t
