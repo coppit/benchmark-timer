@@ -43,8 +43,7 @@ Checklist for a release:
 - Copy current code to old in devel
   $ rm -rf old; rsync -r --cvs-exclude lib/* old
 - Check in code:
-  $ export CVS_RSH=ssh
-  $ cvs -z3 -d:ext:coppit@cvs.benchmark-timer.sourceforge.net:/cvsroot/benchmark-timer ci
+  $ cvs ci
   (use your userid instead of coppit)
 - Tag the release for easy retrieval later
-  $ cvs tag "v1_11"
+  $ cvs tag "v0_6_1"
