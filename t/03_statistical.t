@@ -49,7 +49,7 @@ while( $t->need_more_samples('tag') )
 
   $t->stop('tag');
 
-  print $t->get_report;
+  print $t->report;
 }
 
 # 2

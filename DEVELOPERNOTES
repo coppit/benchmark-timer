@@ -42,10 +42,10 @@ Checklist for a release:
   http://sourceforge.net/news/submit.php?group_id=114099
 - Announce on freshmeat:
   http://freshmeat.net/login/
-  [search for Unget, select add release]
+  [search for Benchmark, select add release]
 - Announce it to comp.lang.perl.announce.
 - Copy current code to old in devel
-  $ rm -rf old; rsync -r --cvs-exclude lib/* old
+  $ rm -rf old; rsync -r --cvs-exclude * old
 - Check in code:
   $ cvs ci
 - Tag the release for easy retrieval later

@@ -12,6 +12,7 @@ lib/Benchmark/Timer.pm
 t/01_basic.t
 t/02_skip.t
 t/03_statistical.t
+t/04_reports.t
 t/99_errors.t
 
 # Module::Install extensions

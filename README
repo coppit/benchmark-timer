@@ -5,10 +5,9 @@ Perl extension to benchmark code, with or without statistical confidence.
 
 NEW IN THIS VERSION
 
-Version 0.6.1: Thu Sep 16 2004
-- Modified Makefile.PL to use Module::Install::CustomInstallationPath
-- Changed version numbering
-- Fixed broken dependency specification in Makefile.PL
+Version 0.7.0: Thu Oct 21 10:29:11 EDT 2004
+- Renamed get_report to report, and added reports method.
+- Clarified the documentation
 
 
 MODULE DEPENDENCIES
