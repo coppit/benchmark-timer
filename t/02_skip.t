@@ -13,11 +13,8 @@
 # ========================================================================
 
 use strict;
-use Test;
+use Test::More tests => 5;
 use Benchmark::Timer;
-
-BEGIN { plan tests => 5 }
-
 
 # ------------------------------------------------------------------------
 # Test that a Benchmark::Timer created with a zero skip functions the
@@ -39,8 +36,8 @@ for(1 .. 10) {
 my @r1 = $t1->data('tag1');
 my @r2 = $t2->data('tag2');
 
-ok(scalar @r1 == scalar @r2 ? 1 : 0);
-
+# 1
+is(scalar @r1, scalar @r2, 'Data size two tags');
 
 # ------------------------------------------------------------------------
 # Skip 1 trial, get n - 1 trials total.
@@ -53,8 +50,8 @@ for(1 .. $n) {
 }
 my @r = $t->data('tag');
 
-ok(scalar @r == $n - 1 ? 1 : 0);
-
+# 2
+is(scalar @r, $n-1, 'Data size skip 1');
 
 # ------------------------------------------------------------------------
 # Skip n - 1 trials, get 1 trial total.
@@ -67,8 +64,8 @@ for(1 .. $n) {
 }
 @r = $t->data('tag');
 
-ok(scalar @r == 1 ? 1 : 0);
-
+# 3
+is(scalar @r, 1, 'Data size 1 trial only');
 
 # ------------------------------------------------------------------------
 # Skip n trials, get no trials at all.
@@ -81,8 +78,8 @@ for(1 .. $n) {
 }
 @r = $t->data('tag');
 
-ok(scalar @r == 0 ? 1 : 0);
-
+# 4
+is(scalar @r, 0, 'Data size no trials');
 
 # ------------------------------------------------------------------------
 # Skip n + 1 trials, also get no trials at all.
@@ -95,8 +92,8 @@ for(1 .. $n) {
 }
 @r = $t->data('tag');
 
-ok(scalar @r == 0 ? 1 : 0);
-
+# 5
+is(scalar @r, 0, 'Data size no trials (n+1)');
 
 # ========================================================================
 __END__

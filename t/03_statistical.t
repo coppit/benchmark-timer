@@ -15,21 +15,17 @@
 # ========================================================================
 
 use strict;
-use Test;
-
-BEGIN { plan tests => 4 }
+use Test::More;
 
 # ------------------------------------------------------------------------
 
 unless (eval 'require Statistics::PointEstimation')
 {
-  for (1 .. 5)
-  {
-    skip("Skip optional module Statistics::PointEstimation is not installed",1);
-  }
-
+  plan skip_all => 'statsistics::PointEstimation is not installed';
   exit;
 }
+
+plan tests => 4;
 
 # ------------------------------------------------------------------------
 
@@ -41,7 +37,7 @@ use Time::HiRes qw( usleep );
 my $t = Benchmark::Timer->new(minimum => 3, confidence => 97.5, error => .5);
 
 # 1
-ok(1);
+ok(defined $t, 'Created Benchmark::Timer');
 
 my $time = time;
 
@@ -57,12 +53,12 @@ while( $t->need_more_samples('tag') )
 }
 
 # 2
-ok(1);
+ok(1, 'Finished collecting data');
 
 my $result = $t->result('tag');
 
 # 3
-ok(defined $result ? 1 : 0);
+ok(defined $result, 'Statistical results');
 
 my @data = $t->data('tag');
 
@@ -70,7 +66,7 @@ use Data::Dumper;
 print "Data:\n", Dumper \@data;
 
 # 4
-ok(@data >= 3 ? 1 : 0);
+ok(@data >= 3, 'More than 2 trials');
 
 # ========================================================================
 __END__

@@ -13,6 +13,9 @@ abstract_from   ('lib/Benchmark/Timer.pm');
 version_from    ('lib/Benchmark/Timer.pm');
 license         ('gpl');
 
+build_requires  (
+                  'Test::More' => 0,
+                );
 requires        (
                   'Time::HiRes' => 0,
                 );
@@ -27,10 +30,9 @@ features        (
 
 skip            ('delta.pl');
 
-clean_files     ('t/temp');
-
 include         ('ExtUtils/AutoInstall.pm');
 
+auto_include_deps ( );
 auto_install    ( );
 WriteAll();
 

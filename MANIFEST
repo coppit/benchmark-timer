@@ -9,7 +9,6 @@ delta.pl
 lib/Benchmark/Timer.pm
 
 # Tests
-t/00_loadlib.t
 t/01_basic.t
 t/02_skip.t
 t/03_statistical.t

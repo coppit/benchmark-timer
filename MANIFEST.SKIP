@@ -20,9 +20,6 @@
 ^\.#
 \..*\.swp$
 
-# Skip files with spaces
-^.* .*$
-
 # Other stuff
 ^todo$
 ^DEVELOPERNOTES$

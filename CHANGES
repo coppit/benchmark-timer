@@ -1,5 +1,8 @@
 Revision history for Perl extension Benchmark::Timer.
 
+Version 0.6.2:
+- Switched to Test::More for better test reporting
+
 Version 0.6.1: Thu Sep 16 2004
 - Modified Makefile.PL to use Module::Install::CustomInstallationPath
 - Changed version numbering

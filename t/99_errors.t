@@ -11,11 +11,8 @@
 # ========================================================================
 
 use strict;
-use Test;
+use Test::More tests => 6;
 use Benchmark::Timer;
-
-BEGIN { plan tests => 6 }
-
 
 # ------------------------------------------------------------------------
 # Check fatal condition where you call stop() but start() has NEVER run
@@ -24,8 +21,9 @@ eval {
     my $t = Benchmark::Timer->new;
     $t->stop;
 };
-ok($@ && $@ =~ /must call/ ? 1 : 0);
 
+# 1
+like($@, qr/must call/, 'Must call start first');
 
 # ------------------------------------------------------------------------
 # Check fatal out of sync condition
@@ -36,21 +34,27 @@ eval {
     $t->stop;
     $t->stop;
 };
-ok($@ && $@ =~ /out of sync/ ? 1 : 0);
 
+# 2
+like($@, qr/out of sync/, 'Out of sync');
 
 # ------------------------------------------------------------------------
 # Check fatal bad skip argument handling
 
 eval { my $t = Benchmark::Timer->new( skip => undef ) };
-ok($@ && $@ =~ /argument skip/ ? 1 : 0);
+
+# 3
+like($@, qr/argument skip/, 'Argument skip 1');
 
 eval { my $t = Benchmark::Timer->new( skip => 'foo' ) };
-ok($@ && $@ =~ /argument skip/ ? 1 : 0);
+
+# 4
+like($@, qr/argument skip/, 'Argument skip 2');
 
 eval { my $t = Benchmark::Timer->new( skip => -1 ) };
-ok($@ && $@ =~ /argument skip/ ? 1 : 0);
 
+# 5
+like($@, qr/argument skip/, 'Argument skip 3');
 
 # ------------------------------------------------------------------------
 # Check warning on unrecognized arguments
@@ -61,7 +65,9 @@ undef $last_warning;
     local $SIG{__WARN__} = sub { $last_warning = shift };
     my $weird_arg = '__this_is_not_a_valid_argument__';
     my $t = Benchmark::Timer->new( $weird_arg => undef );
-    ok($last_warning =~ /skipping unknown/ ? 1 : 0);
+
+    # 6
+    like($last_warning, qr/skipping unknown/, 'Invalid argument');
 }
 
 
