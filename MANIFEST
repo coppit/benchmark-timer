@@ -16,9 +16,11 @@ t/03_statistical.t
 t/99_errors.t
 
 # Module::Install extensions
+inc/File/HomeDir.pm
 inc/Module/Install.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
+inc/Module/Install/CustomInstallationPath.pm
 inc/Module/Install/Fetch.pm
 inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm

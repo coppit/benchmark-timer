@@ -85,7 +85,7 @@ use Carp;
 use Time::HiRes qw( gettimeofday tv_interval );
 
 use vars qw($VERSION);
-$VERSION = 0.6;
+$VERSION = '0.6.1';
 
 use constant BEFORE     => 0;
 use constant ELAPSED    => 1;
