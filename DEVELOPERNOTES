@@ -1,0 +1,58 @@
+This file is not distributed with Benchmark::Timer. It outlines some notes
+for developers readying a set of files for distribution.
+
+Checklist for a release:
+- Be sure to add new test cases for new features
+- Make sure version number increases.
+- Edit version number in README.
+- Add version changes to README and CHANGES.
+- Add new module dependencies to Makefile.PL, and update README
+- Update MANIFEST and MANIFEST.SKIP if necessary.
+  $ make distcheck
+- Test your distribution and scripts against the functional tests:
+  $ make realclean
+  $ perl Makefile.PL
+  $ make
+  $ make test
+  (run this in the devel directory to also test speed)
+- After the functional tests have passed, make the distribution file:
+  $ make dist
+- Install the distribution file elsewhere to test it.
+  $ scp Benchmark-Timer-X.XX.tar.gz coppit@linux.sourceforge.net:.
+  $ ssh -l coppit linux.sourceforge.net
+  $ tar xvfz Benchmark-Timer-X.XX.tar.gz
+  $ cd Benchmark-Timer-X.XX
+  $ perl Makefile.PL
+  $ make
+  $ make test
+- Make sure the speed difference isn't too bad:
+  $ make testspeed
+- Update CHANGES file, and copy to server:
+  $ scp CHANGES coppit@benchmark-timer.sourceforge.net:/home/groups/b/be/benchmark-timer/htdocs
+  (Use your username instead of coppit)
+- Make distribution file. (See above.)
+- Upload to CPAN:
+  http://pause.perl.org/pause/authenquery
+  or
+  cpan-upload Benchmark-Timer-X.XX.tar.gz
+- Release file:
+  http://sourceforge.net/account/login.php
+  ncftpput upload.sf.net incoming Benchmark-Timer-X.XX.tar.gz
+  http://sourceforge.net/project/admin/editpackages.php?group_id=114099
+- Announce any news on SourceForge:
+  http://sourceforge.net/news/submit.php?group_id=114099
+- Announce on freshmeat:
+  http://freshmeat.net/login/
+  [search for Unget, select add release]
+- Announce it to comp.lang.perl.announce.
+- Copy current code to old in devel
+  $ cd devel
+  $ rm -rf old
+  $ cp -r lib old
+  $ rm -rf `find old -name CVS`
+- Check in code:
+  $ export CVS_RSH=ssh
+  $ cvs -z3 -d:ext:coppit@cvs.benchmark-timer.sourceforge.net:/cvsroot/benchmark-timer ci
+  (use your userid instead of coppit)
+- Tag the release for easy retrieval later
+  $ cvs tag "v1_11"

@@ -1,0 +1,32 @@
+Benchmark::Timer 0.6 released
+
+Description:
+- Benchmark::Timer allows you to time portions of code conveniently, as well
+  as benchmark code by allowing timings of repeated trials. It is perfect for
+  when you need more precise information about the running time of portions of
+  your code than the Benchmark module will give you, but don't want to go all
+  out and profile your code.
+- This release adds statistical sampling functionality, answering the common
+  question "How many trials are enough?"
+
+Download:
+- You can download Benchmark::Timer from CPAN:
+  http://www.cpan.org/authors/id/D/DC/DCOPPIT/Benchmark-Timer-0.6.tar.gz
+- Until the file propagates to the mirrors, you can use the following URL:
+  http://prdownloads.sourceforge.net/benchmark-timer/Benchmark-Timer-0.6.tar.gz
+
+Changes:
+- Maintenance of the module transferred to David Coppit
+- License changed to GNU GPL.
+- Improved reporting to support multiple tags
+- Added statistical sampling, allowing the user to time code until a certain
+  confidence level is reached. (Added error() and confidence() to support this
+  functionality)
+
+See the README for additional notes.
+
+A complete change log is at:
+- http://benchmark-timer.sourceforge.net/CHANGES
+
+Regards,
+David

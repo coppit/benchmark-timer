@@ -1,0 +1,31 @@
+CHANGES
+LICENSE
+MANIFEST
+Makefile.PL
+README
+lib/Benchmark/Timer.pm
+delta.pl
+
+# Tests
+t/00_loadlib.t
+t/01_basic.t
+t/02_skip.t
+t/03_statistical.t
+t/99_errors.t
+
+# Module::Install extensions
+inc/Module/Install.pm
+inc/Module/Install/Base.pm
+inc/Module/Install/Can.pm
+inc/Module/Install/Fetch.pm
+inc/Module/Install/Makefile.pm
+inc/Module/Install/Metadata.pm
+inc/Module/Install/Skip.pm
+inc/Module/Install/Win32.pm
+inc/Module/Install/WriteAll.pm
+inc/Module/Install/PRIVATE/CustomInstallationPath.pm
+inc/ExtUtils/AutoInstall.pm
+inc/Module/Install/AutoInstall.pm
+inc/Module/Install/Include.pm
+
+META.yml

@@ -1,0 +1,10 @@
+lib/Module/Install/PRIVATE/CustomInstallationPath.pm
+.*.swp
+todo
+DEVELOPERNOTES
+announce.sample
+MANIFEST.SKIP
+blib
+Makefile(.old)?
+.*.tar.gz
+Benchmark-Timer-\d+\.\d+

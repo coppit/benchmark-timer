@@ -1,0 +1,9 @@
+- Add an option to set the output filehandle (instead of always using STDERR)
+  for stat reporting
+- Figure out mod_perl integration (maybe allow an output callback so you could
+  pass it a sub { Apache->request->log->info(@_) } or similar)
+- Work (in a handicapped way) even if Time::HiRes is unavailable (just go to
+  the nearest second, and hope that you're timing something that's really
+  lengthy!)
+- Plug in to different statistics modules (like yours)
+

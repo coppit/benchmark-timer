@@ -1,0 +1,84 @@
+Benchmark::Timer
+
+Perl extension to benchmark code, with or without statistical confidence.
+
+
+NEW IN THIS VERSION
+
+- Maintenance of the module transferred to David Coppit <david@coppit.org>
+- License changed to GNU GPL.
+- Improved reporting to support multiple tags
+- Added statistical sampling, allowing the user to time code until a certain
+  confidence level is reached. (Added error() and confidence() to support this
+  functionality)
+
+MODULE DEPENDENCIES
+
+You will need to install Time::HiRes to use Benchmark::Timer. The easiest way
+to install it is to run:
+
+  perl -MCPAN -e 'install Time::HiRes'
+
+If you intend on using the statistical features, you will also need to install
+Statistics::PointEstimation.
+
+INSTALLATION
+
+To install this package, change to the directory where you unarchived this
+distribution and type the following:
+
+  perl Makefile.PL
+  make
+  make test
+  make install
+
+During the 'make test', the statistical test may take some time to run,
+depending on how accurate "sleep(1)" is on your system. The normal time is
+less than 5 seconds.
+
+If you do not have root access on your machine, then you may not have the
+ability to install this module in the standard perl library path. You may
+direct the installation into your own space, e.g.,
+
+  perl Makefile.PL LIB='/home/userid/lib'
+
+or perhaps the entire installation, e.g.,
+
+  perl Makefile.PL PREFIX='/home/userid'
+
+If you make the installation into your own directory, then remember that you
+must tell perl where to search for modules before trying to 'use' them. For
+example:
+
+  use lib '/home/userid/lib';
+  use Benchmark::Timer;
+
+
+NOTES
+
+Please let me know if you are using this module. Tell me what bugs you find or
+what can be done to improve it.
+
+
+HOMEPAGE
+
+Visit http://sourceforge.net/projects/benchmark-timer/ for the latest version,
+mailing lists, discussion forums, CVS access, and more.
+
+
+COPYRIGHT
+
+Copyright (c) 2001-2002 Andrew Ho. Copyright (c) 2004 David Coppit. All rights
+reserved.
+
+
+LICENSE
+
+This code is distributed under the GNU General Public License (GPL).  See
+http://www.opensource.org/gpl-license.html and http://www.opensource.org/.
+
+
+AUTHOR
+
+David Coppit, david@coppit.org (current maintainer)
+Andrew Ho, andrew@zeuscat.com (original author)
