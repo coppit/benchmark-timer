@@ -15,6 +15,7 @@ t/03_statistical.t
 t/99_errors.t
 
 # Module::Install extensions
+inc/ExtUtils/AutoInstall.pm
 inc/File/HomeDir.pm
 inc/Module/Install.pm
 inc/Module/Install/Base.pm
@@ -26,8 +27,9 @@ inc/Module/Install/Metadata.pm
 inc/Module/Install/Skip.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
-inc/ExtUtils/AutoInstall.pm
 inc/Module/Install/AutoInstall.pm
 inc/Module/Install/Include.pm
+inc/Test/Builder.pm
+inc/Test/More.pm
 
 META.yml
