@@ -3,10 +3,6 @@
 use strict;
 use inc::Module::Install;
 
-Check_Custom_Installation();
-
-print "\n", '-'x78, "\n\n";
-
 name            ('Benchmark-Timer');
 author          ('David Coppit <david@coppit.org>');
 abstract_from   ('lib/Benchmark/Timer.pm');
@@ -17,6 +13,7 @@ build_requires  (
                   'Test::More' => 0,
                 );
 requires        (
+                  'perl' => '5.004',
                   'Time::HiRes' => 0,
                 );
 

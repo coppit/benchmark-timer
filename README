@@ -5,9 +5,8 @@ Perl extension to benchmark code, with or without statistical confidence.
 
 NEW IN THIS VERSION
 
-Version 0.7.0: Thu Oct 21 10:29:11 EDT 2004
-- Renamed get_report to report, and added reports method.
-- Clarified the documentation
+Version 0.7100: Tue Dec 21 2004
+- Fixed version numbers, which were incompatible with some modules.
 
 
 MODULE DEPENDENCIES
@@ -35,11 +34,12 @@ distribution and type the following:
   make test
   make install
 
-You will be prompted for installation locations. You can suppress these
-prompts by specifying either "PREFIX=/installation/path" (for installation
-into a custom location), "INSTALLDIRS=site" (for installation into
-site-specific Perl directories), or "INSTALLDIRS=perl" (for installation into
-standard Perl directories).
+You can install this package into a non-default location by appending one of
+the following to the "perl Makefile.PL" command:
+
+- "PREFIX=/installation/path" (for installation into a custom location),
+- "INSTALLDIRS=site" (for installation into site-specific Perl directories)
+- "INSTALLDIRS=perl" (for installation into standard Perl directories).
 
 If you make the installation into your own directory, then remember that you
 must tell perl where to search for modules before trying to 'use' them. For
