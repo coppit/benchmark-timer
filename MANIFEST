@@ -25,7 +25,6 @@ inc/Module/Install/Metadata.pm
 inc/Module/Install/Skip.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
-inc/Module/Install/PRIVATE/CustomInstallationPath.pm
 inc/ExtUtils/AutoInstall.pm
 inc/Module/Install/AutoInstall.pm
 inc/Module/Install/Include.pm
