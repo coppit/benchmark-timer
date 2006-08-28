@@ -1,9 +1,8 @@
 This file is not distributed with the module. It outlines some notes for
 developers readying a set of files for distribution.
 
-CVS CHECKOUT:
-$ export CVS_RSH=ssh
-$ cvs -z3 -d:ext:coppit@cvs.sourceforge.net:/cvsroot/benchmark-timer co devel
+Subversion CHECKOUT:
+$ svn co https://coppit@svn.sourceforge.net/svnroot/benchmark-timer/trunk Benchmark-Timer
 
 Checklist for a release:
 - Be sure to add new test cases for new features
@@ -45,8 +44,8 @@ Checklist for a release:
   [search for Benchmark, select add release]
 - Announce it to comp.lang.perl.announce.
 - Copy current code to old in devel
-  $ rm -rf old; rsync -r --cvs-exclude * old
+  $ rm -rf old; rsync -r --cvs-exclude --exclude=.svn * old
 - Check in code:
-  $ cvs ci
+  $ svn commit
 - Tag the release for easy retrieval later
-  $ cvs tag "v0_6_1"
+  $ svn cp https://coppit@svn.sourceforge.net/svnroot/benchmark-timer/trunk https://coppit@svn.sourceforge.net/svnroot/benchmark-timer/tags/v0.6.1" 

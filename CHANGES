@@ -4,6 +4,7 @@ Version 0.7100: Tue Dec 21 2004
 - Fixed version numbers, which were incompatible with some modules. (Thanks to
   Tassilo von Parseval <tassilo.von.parseval@rwth-aachen.de> for the bug
   report)
+- Removed custom installation prompts
 
 Version 0.7.0: Thu Oct 21 10:29:11 EDT 2004
 - Renamed get_report to report, and added reports method. (Thanks to Aaron
