@@ -1,84 +1,3 @@
-# ========================================================================
-# Benchmark::Timer - Perl code benchmarking tool
-# David Coppit <david@coppit.org>
-#
-# This program contains embedded documentation in Perl POD (Plain Old
-# Documentation) format. Search for the string "=head1" in this document
-# to find documentation snippets, or use "perldoc" to read it; utilities
-# like "pod2man" and "pod2html" can reformat as well.
-#
-# Copyright(c) 2004 David Coppit
-# Copyright(c) 2000-2001 Andrew Ho.
-#
-# ========================================================================
-
-=head1 NAME
-
-Benchmark::Timer - Benchmarking with statistical confidence
-
-=head1 SYNOPSIS
-
-  # Non-statistical usage
-  use Benchmark::Timer;
-  $t = Benchmark::Timer->new(skip => 1);
-
-  for(1 .. 1000) {
-      $t->start('tag');
-      &long_running_operation();
-      $t->stop('tag');
-  }
-  print $t->report;
-
-  # --------------------------------------------------------------------
-
-  # Statistical usage
-  use Benchmark::Timer;
-  $t = Benchmark::Timer->new(skip => 1, confidence => 97.5, error => 2);
-
-  while($t->need_more_samples('tag')) {
-      $t->start('tag');
-      &long_running_operation();
-      $t->stop('tag');
-  }
-  print $t->report;
-
-=head1 DESCRIPTION
-
-The Benchmark::Timer class allows you to time portions of code
-conveniently, as well as benchmark code by allowing timings of repeated
-trials. It is perfect for when you need more precise information about the
-running time of portions of your code than the Benchmark module will give
-you, but don't want to go all out and profile your code.
-
-The methodology is simple; create a Benchmark::Timer object, and wrap portions
-of code that you want to benchmark with C<start()> and C<stop()> method calls.
-You can supply a tag to those methods if you plan to time multiple portions of
-code.  If you provide error and confidence values, you can also use
-C<need_more_samples()> to determine, statistically, whether you need to
-collect more data.
-
-After you have run your code, you can obtain information about the running
-time by calling the C<results()> method, or get a descriptive benchmark report
-by calling C<report()>.  If you run your code over multiple trials, the
-average time is reported.  This is wonderful for benchmarking time-critical
-portions of code in a rigorous way. You can also optionally choose to skip any
-number of initial trials to cut down on initial case irregularities.
-
-=head1 METHODS
-
-In all of the following methods, C<$tag> refers to the user-supplied name of
-the code being timed. Unless otherwise specified, $tag defaults to the tag of
-the last call to C<start()>, or "_default" if C<start()> was not previously
-called with a tag.
-
-=over 4
-
-=cut
-
-
-# ------------------------------------------------------------------------
-# Package setup
-
 package Benchmark::Timer;
 require 5.005;
 use strict;
@@ -87,7 +6,7 @@ use Carp;
 use Time::HiRes qw( gettimeofday tv_interval );
 
 use vars qw($VERSION);
-$VERSION = sprintf "%d.%02d%02d", q/0.71.0/ =~ /(\d+)/g;
+$VERSION = sprintf "%d.%02d%02d", q/0.71.1/ =~ /(\d+)/g;
 
 use constant BEFORE     => 0;
 use constant ELAPSED    => 1;
@@ -103,46 +22,6 @@ use constant STAT       => 9;
 # ------------------------------------------------------------------------
 # Constructor
 
-=item $t = Benchmark::Timer->new( [options] );
-
-Constructor for the Benchmark::Timer object; returns a reference to a
-timer object. Takes the following named arguments:
-
-=over 4
-
-=item skip
-
-The number of trials (if any) to skip before recording timing information.
-
-=item minimum
-
-The minimum number of trials to run.
-
-=item error
-
-A percentage between 0 and 100 which indicates how much error you are willing
-to tolerate in the average time measured by the benchmark.  For example, a
-value of 1 means that you want the reported average time to be within 1% of
-the real average time. C<need_more_samples()> will use this value to determine
-when it is okay to stop collecting data.
-
-If you specify an error you must also specify a confidence.
-
-=item confidence
-
-A percentage between 0 and 100 which indicates how confident you want to be in
-the error measured by the benchmark. For example, a value of 97.5 means that
-you want to be 97.5% confident that the real average time is within the error
-margin you have specified. C<need_more_samples()> will use this value to
-compute the estimated error for the collected data, so that it can determine
-when it is okay to stop.
-
-If you specify a confidence you must also specify an error.
-
-=back
-
-=cut
-
 sub new {
     my $class = shift;
     my $self = [];
@@ -153,15 +32,6 @@ sub new {
 
 # ------------------------------------------------------------------------
 # Public methods
-
-=item $t->reset;
-
-Reset the timer object to the pristine state it started in.
-Erase all memory of tags and any previously accumulated timings.
-Returns a reference to the timer object. It takes the same arguments
-the constructor takes.
-
-=cut
 
 sub reset {
     my $self = shift;
@@ -238,13 +108,6 @@ sub reset {
 }
 
 
-=item $t->start($tag);
-
-Record the current time so that when C<stop()> is called, we can calculate an
-elapsed time. 
-
-=cut
-
 # In this routine we try hard to make the [ gettimeofday ] take place
 # as late as possible to minimize Heisenberg problems. :)
 
@@ -271,15 +134,6 @@ sub start {
     }
 }
 
-
-=item $t->stop($tag);
-
-Record timing information. If $tag is supplied, it must correspond to one
-given to a previously called C<start()> call. It returns the elapsed time in
-milliseconds.  C<stop()> croaks if the timer gets out of sync (e.g. the number
-of C<start()>s does not match the number of C<stop()>s.)
-
-=cut
 
 sub stop {
     my $after = [ gettimeofday ];    # minimize overhead
@@ -318,17 +172,6 @@ sub stop {
 }
 
 
-=item $t->need_more_samples($tag);
-
-Compute the estimated error in the average of the data collected thus far, and
-return true if that error exceeds the user-specified error. If a $tag is
-supplied, it must correspond to one given to a previously called C<start()>
-call. 
-
-This routine assumes that the data are normally distributed.
-
-=cut
-
 sub need_more_samples {
     my $self = shift;
     my $tag = shift || $self->[LASTTAG] || '_default';
@@ -354,16 +197,6 @@ sub need_more_samples {
 }
 
 
-=item $t->report($tag);
-
-Returns a string containing a simple report on the collected timings for $tag.
-This report contains the number of trials run, the total time taken, and, if
-more than one trial was run, the average time needed to run one trial and
-error information.  C<report()> will complain (via a warning) if a tag is
-still active.
-
-=cut
-
 sub report {
     my $self = shift;
     my $tag = shift || $self->[LASTTAG] || '_default';
@@ -377,18 +210,6 @@ sub report {
 }
 
 
-=item $t->reports;
-
-In a scalar context, returns a string containing a simple report on the
-collected timings for all tags. The report is a concatenation of the
-individual tag reports, in the original tag order. In an list context, returns
-a hash keyed by tag and containing reports for each tag. The return value is
-actually an array, so that the original tag order is preserved if you assign
-to an array instead of a hash. C<reports()> will complain (via a warning) if a
-tag is still active.
-
-
-=cut
 
 sub reports {
     my $self = shift;
@@ -456,13 +277,6 @@ sub _report {
 }
 
 
-=item $t->result($tag);
-
-Return the time it took for $tag to elapse, or the mean time it took for $tag
-to elapse once, if $tag was used to time code more than once. C<result()> will
-complain (via a warning) if a tag is still active.
-
-=cut
 
 sub result {
     my $self = shift;
@@ -477,16 +291,6 @@ sub result {
 }
 
 
-=item $t->results;
-
-Returns the timing data as a hash keyed on tags where each value is
-the time it took to run that code, or the average time it took,
-if that code ran more than once. In scalar context it returns a reference
-to that hash. The return value is actually an array, so that the original
-tag order is preserved if you assign to an array instead of a hash.
-
-=cut
-
 sub results {
     my $self = shift;
     my @results;
@@ -498,22 +302,6 @@ sub results {
 }
 
 
-=item $t->data($tag), $t->data;
-
-These methods are useful if you want to recover the full internal timing
-data to roll your own reports.
-
-If called with a $tag, returns the raw timing data for that $tag as
-an array (or a reference to an array if called in scalar context). This is
-useful for feeding to something like the Statistics::Descriptive package.
-
-If called with no arguments, returns the raw timing data as a hash keyed
-on tags, where the values of the hash are lists of timings for that
-code. In scalar context, it returns a reference to that hash. As with
-C<results()>, the data is internally represented as an array so you can
-recover the original tag order by assigning to an array instead of a hash.
-
-=cut
 
 sub data {
     my $self = shift;
@@ -580,9 +368,187 @@ sub commify {
     return $fp ? join '.', $ip, $fp : $ip;
 }
 
-
 # ------------------------------------------------------------------------
-# Finish up the POD.
+# Return true for a valid Perl include
+
+1;
+
+# ---------------------------------------------------------------------------
+
+=head1 NAME
+
+Benchmark::Timer - Benchmarking with statistical confidence
+
+
+=head1 SYNOPSIS
+
+  # Non-statistical usage
+  use Benchmark::Timer;
+  $t = Benchmark::Timer->new(skip => 1);
+
+  for(1 .. 1000) {
+      $t->start('tag');
+      &long_running_operation();
+      $t->stop('tag');
+  }
+  print $t->report;
+
+  # --------------------------------------------------------------------
+
+  # Statistical usage
+  use Benchmark::Timer;
+  $t = Benchmark::Timer->new(skip => 1, confidence => 97.5, error => 2);
+
+  while($t->need_more_samples('tag')) {
+      $t->start('tag');
+      &long_running_operation();
+      $t->stop('tag');
+  }
+  print $t->report;
+
+=head1 DESCRIPTION
+
+The Benchmark::Timer class allows you to time portions of code
+conveniently, as well as benchmark code by allowing timings of repeated
+trials. It is perfect for when you need more precise information about the
+running time of portions of your code than the Benchmark module will give
+you, but don't want to go all out and profile your code.
+
+The methodology is simple; create a Benchmark::Timer object, and wrap portions
+of code that you want to benchmark with C<start()> and C<stop()> method calls.
+You can supply a tag to those methods if you plan to time multiple portions of
+code.  If you provide error and confidence values, you can also use
+C<need_more_samples()> to determine, statistically, whether you need to
+collect more data.
+
+After you have run your code, you can obtain information about the running
+time by calling the C<results()> method, or get a descriptive benchmark report
+by calling C<report()>.  If you run your code over multiple trials, the
+average time is reported.  This is wonderful for benchmarking time-critical
+portions of code in a rigorous way. You can also optionally choose to skip any
+number of initial trials to cut down on initial case irregularities.
+
+=head1 METHODS
+
+In all of the following methods, C<$tag> refers to the user-supplied name of
+the code being timed. Unless otherwise specified, $tag defaults to the tag of
+the last call to C<start()>, or "_default" if C<start()> was not previously
+called with a tag.
+
+=over 4
+
+=item $t = Benchmark::Timer->new( [options] );
+
+Constructor for the Benchmark::Timer object; returns a reference to a
+timer object. Takes the following named arguments:
+
+=over 4
+
+=item skip
+
+The number of trials (if any) to skip before recording timing information.
+
+=item minimum
+
+The minimum number of trials to run.
+
+=item error
+
+A percentage between 0 and 100 which indicates how much error you are willing
+to tolerate in the average time measured by the benchmark.  For example, a
+value of 1 means that you want the reported average time to be within 1% of
+the real average time. C<need_more_samples()> will use this value to determine
+when it is okay to stop collecting data.
+
+If you specify an error you must also specify a confidence.
+
+=item confidence
+
+A percentage between 0 and 100 which indicates how confident you want to be in
+the error measured by the benchmark. For example, a value of 97.5 means that
+you want to be 97.5% confident that the real average time is within the error
+margin you have specified. C<need_more_samples()> will use this value to
+compute the estimated error for the collected data, so that it can determine
+when it is okay to stop.
+
+If you specify a confidence you must also specify an error.
+
+=back
+
+=item $t->reset;
+
+Reset the timer object to the pristine state it started in.
+Erase all memory of tags and any previously accumulated timings.
+Returns a reference to the timer object. It takes the same arguments
+the constructor takes.
+
+=item $t->start($tag);
+
+Record the current time so that when C<stop()> is called, we can calculate an
+elapsed time. 
+
+=item $t->stop($tag);
+
+Record timing information. If $tag is supplied, it must correspond to one
+given to a previously called C<start()> call. It returns the elapsed time in
+milliseconds.  C<stop()> croaks if the timer gets out of sync (e.g. the number
+of C<start()>s does not match the number of C<stop()>s.)
+
+=item $t->need_more_samples($tag);
+
+Compute the estimated error in the average of the data collected thus far, and
+return true if that error exceeds the user-specified error. If a $tag is
+supplied, it must correspond to one given to a previously called C<start()>
+call. 
+
+This routine assumes that the data are normally distributed.
+
+=item $t->report($tag);
+
+Returns a string containing a simple report on the collected timings for $tag.
+This report contains the number of trials run, the total time taken, and, if
+more than one trial was run, the average time needed to run one trial and
+error information.  C<report()> will complain (via a warning) if a tag is
+still active.
+
+=item $t->reports;
+
+In a scalar context, returns a string containing a simple report on the
+collected timings for all tags. The report is a concatenation of the
+individual tag reports, in the original tag order. In an list context, returns
+a hash keyed by tag and containing reports for each tag. The return value is
+actually an array, so that the original tag order is preserved if you assign
+to an array instead of a hash. C<reports()> will complain (via a warning) if a
+tag is still active.
+
+=item $t->result($tag);
+
+Return the time it took for $tag to elapse, or the mean time it took for $tag
+to elapse once, if $tag was used to time code more than once. C<result()> will
+complain (via a warning) if a tag is still active.
+
+=item $t->results;
+
+Returns the timing data as a hash keyed on tags where each value is
+the time it took to run that code, or the average time it took,
+if that code ran more than once. In scalar context it returns a reference
+to that hash. The return value is actually an array, so that the original
+tag order is preserved if you assign to an array instead of a hash.
+
+=item $t->data($tag), $t->data;
+
+These methods are useful if you want to recover the full internal timing
+data to roll your own reports.
+
+If called with a $tag, returns the raw timing data for that $tag as
+an array (or a reference to an array if called in scalar context). This is
+useful for feeding to something like the Statistics::Descriptive package.
+
+If called with no arguments, returns the raw timing data as a hash keyed
+on tags, where the values of the hash are lists of timings for that
+code. In scalar context, it returns a reference to that hash. As with
+C<results()>, the data is internally represented as an array so you can
+recover the original tag order by assigning to an array instead of a hash.
 
 =back
 
@@ -592,9 +558,11 @@ Benchmarking is an inherently futile activity, fraught with uncertainty
 not dissimilar to that experienced in quantum mechanics. But things are a
 little better if you apply statistics.
 
-=head1 SEE ALSO
+=head1 LICENSE
 
-L<Benchmark>, L<Time::HiRes>, L<Time::Stopwatch>, L<Statistics::Descriptive>
+This code is distributed under the GNU General Public License (GPL). See the
+file LICENSE in the distribution, http://www.opensource.org/gpl-license.html,
+and http://www.opensource.org/.
 
 =head1 AUTHOR
 
@@ -605,14 +573,8 @@ Versions up to 0.5 are distributed under the same terms as Perl.
 Maintenance of this module is now being done by David Coppit
 E<lt>david@coppit.orgE<gt>.
 
+=head1 SEE ALSO
+
+L<Benchmark>, L<Time::HiRes>, L<Time::Stopwatch>, L<Statistics::Descriptive>
+
 =cut
-
-
-# ------------------------------------------------------------------------
-# Return true for a valid Perl include
-
-1;
-
-
-# ========================================================================
-__END__

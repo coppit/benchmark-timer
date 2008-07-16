@@ -3,12 +3,6 @@ Benchmark::Timer - Benchmarking with statistical confidence
 Perl extension to benchmark code, with or without statistical confidence.
 
 
-NEW IN THIS VERSION
-
-Version 0.7100: Tue Dec 21 2004
-- Fixed version numbers, which were incompatible with some modules.
-
-
 MODULE DEPENDENCIES
 
 To use this module, you will need to install:
@@ -20,8 +14,9 @@ install:
 
 - Statistics::PointEstimation.
 
-You should be prompted to install these modules automatically when you run
-"perl Makefile.PL".
+To test this module, you will need to install:
+
+- Test::More
 
 
 INSTALLATION
@@ -61,13 +56,16 @@ you can also do "man Benchmark::Timer".
 
 HOMEPAGE
 
-Visit http://sourceforge.net/projects/benchmark-timer/ for the latest version,
-mailing lists, discussion forums, CVS access, and more.
+The CPAN Page:
+http://search.cpan.org/~dcoppit/Benchmark-Timer/
+
+The Google Code page:
+http://code.google.com/p/benchmark-timer/
 
 
 REPORTING BUGS
-   
-You can report bugs by filing a bug report at the project homepage.
+
+http://code.google.com/p/benchmark-timer/issues/entry
 
 
 COPYRIGHT
@@ -78,8 +76,9 @@ reserved, save those granted by the license.
 
 LICENSE
 
-This code is distributed under the GNU General Public License (GPL).  See
-the file LICENSE included in the distribution.
+This code is distributed under the GNU General Public License (GPL). See the
+file LICENSE in the distribution, http://www.opensource.org/gpl-license.html,
+and http://www.opensource.org/.
 
 
 AUTHOR

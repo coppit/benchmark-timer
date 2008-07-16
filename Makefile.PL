@@ -3,36 +3,19 @@
 use strict;
 use inc::Module::Install;
 
-name            ('Benchmark-Timer');
-author          ('David Coppit <david@coppit.org>');
-abstract_from   ('lib/Benchmark/Timer.pm');
-version_from    ('lib/Benchmark/Timer.pm');
-license         ('gpl');
+all_from        ('lib/Benchmark/Timer.pm');
 
-build_requires  (
-                  'Test::More' => 0,
-                );
 requires        (
-                  'perl' => '5.004',
                   'Time::HiRes' => 0,
                 );
 
-# Optional features and their modules
-features        (
-                  'Statistical sampling support' => [
-                    -default    => 1,
-                    recommends( 'Statistics::PointEstimation' => 0 ),
-                  ],
+test_requires   (
+                  'Test::More' => 0,
                 );
 
-skip            ('delta.pl');
+check_optional  ( 'Statistics::PointEstimation' => 0,
+  'Install Statistics::PointEstimation for statistical sampling support');
 
-include         ('ExtUtils/AutoInstall.pm');
+no_index        ('delta.pl');
 
-auto_include_deps ( );
-auto_install    ( );
 WriteAll();
-
-print "\n", '-'x78, "\n\n";
-
-exit;

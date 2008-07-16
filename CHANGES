@@ -1,4 +1,8 @@
-Revision history for Perl extension Benchmark::Timer.
+Version 0.7101: Mon Jul 14 2008
+- Updated to the latest version of Module::Install
+- Removed auto-install for better compatibility with CPAN and others
+- Reformatted POD in module code
+- Moved hosting to Google Code
 
 Version 0.7100: Tue Dec 21 2004
 - Fixed version numbers, which were incompatible with some modules. (Thanks to
