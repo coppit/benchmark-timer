@@ -1,3 +1,6 @@
+Version 0.7102: Sun Aug 9 2009
+- Updated to the latest version of Module::Install
+
 Version 0.7101: Mon Jul 14 2008
 - Updated to the latest version of Module::Install
 - Removed auto-install for better compatibility with CPAN and others

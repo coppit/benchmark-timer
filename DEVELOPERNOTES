@@ -24,8 +24,6 @@ Checklist for a release:
   or
     cpan-upload Benchmark-Timer-X.XX.tar.gz
 - Announce it to comp.lang.perl.announce
-- Copy current code to old in devel
-  $ rm -rf old; rsync -r --cvs-exclude --exclude=.svn * old
 - Check in code:
   $ svn commit
 - Tag the release for easy retrieval later
