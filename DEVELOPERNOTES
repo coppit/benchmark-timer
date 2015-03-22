@@ -1,8 +1,14 @@
 This file is not distributed with the module. It outlines some notes for
 developers readying a set of files for distribution.
 
-Subversion CHECKOUT:
-$ svn co https://benchmark-timer.googlecode.com/svn/trunk Benchmark-Timer
+git checkout:
+$ git clone https://github.com/coppit/benchmark-timer.git
+
+When running "perl Makefile.PL" on a new system, it will complain about the
+check_optional() call in Makefile.PL. Simply copy the
+inc/Module/Install/CheckOptional.pm from a previous release. (I haven't gotten
+around to releasing Module::Install::CheckOptional as a module, since it's so
+trivial.)
 
 Checklist for a release:
 - Be sure to add new test cases for new features
@@ -23,8 +29,7 @@ Checklist for a release:
     http://pause.perl.org/pause/authenquery
   or
     cpan-upload Benchmark-Timer-X.XX.tar.gz
-- Announce it to comp.lang.perl.announce
-- Check in code:
-  $ svn commit
 - Tag the release for easy retrieval later
-  $ svn cp https://benchmark-timer.googlecode.com/svn/trunk https://benchmark-timer.googlecode.com/svn/tags/0.7100
+  $ git tag -a v0.7100 -m 'Version 0.7100'
+- Push changes to github:
+  $ git push

@@ -59,18 +59,18 @@ HOMEPAGE
 The CPAN Page:
 http://search.cpan.org/~dcoppit/Benchmark-Timer/
 
-The Google Code page:
-http://code.google.com/p/benchmark-timer/
+The GitHub page:
+https://github.com/coppit/benchmark-timer/
 
 
 REPORTING BUGS
 
-http://code.google.com/p/benchmark-timer/issues/entry
+https://github.com/coppit/benchmark-timer/issues
 
 
 COPYRIGHT
 
-Copyright (c) 2001-2002 Andrew Ho. Copyright (c) 2004 David Coppit. All rights
+Copyright (c) 2001-2002 Andrew Ho. Copyright (c) 2004-2015 David Coppit. All rights
 reserved, save those granted by the license.
 
 
