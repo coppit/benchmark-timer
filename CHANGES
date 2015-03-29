@@ -1,3 +1,7 @@
+Version 0.7104: Sat Mar 28 2015
+- Bundle Module::AutoInstall to prevent breaks when people don't have it
+  installed already
+
 Version 0.7103: Sun Mar 22 2015
 - Moved code to github
 - Added POD test
