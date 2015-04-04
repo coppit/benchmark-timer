@@ -29,3 +29,4 @@
 \.tar\.gz$
 t/temp/
 ^MYMETA.(json|yml)
+.gitignore

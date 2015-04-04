@@ -4,6 +4,7 @@ MANIFEST
 Makefile.PL
 README
 delta.pl
+TODO
 
 # The module files
 lib/Benchmark/Timer.pm
