@@ -1,0 +1,9 @@
+/blib/
+inc/
+/Makefile
+/META.*
+/MYMETA.*
+/pm_to_blib
+/Benchmark-Timer-*.tar.gz
+/t/temp/
+**/*.swp
