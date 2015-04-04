@@ -14,7 +14,7 @@ test_requires(
   'Test::More' => 0,
 );
 
-check_optional( 'Statistics::PointEstimation' => 0,
+check_optional('Statistics::PointEstimation' => 0,
   "Install Statistics::PointEstimation for statistical sampling support\n");
 
 # Module::Install doesn't figure out that Module::Install::CheckOptional needs
