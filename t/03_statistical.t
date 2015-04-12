@@ -21,7 +21,7 @@ use Test::More;
 
 unless (eval 'require Statistics::PointEstimation')
 {
-  plan skip_all => 'statsistics::PointEstimation is not installed';
+  plan skip_all => 'Statistics::PointEstimation is not installed';
   exit;
 }
 
