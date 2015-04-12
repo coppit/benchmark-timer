@@ -6,6 +6,8 @@ use inc::Module::Install;
 
 all_from('lib/Benchmark/Timer.pm');
 
+githubmeta;
+
 requires(
   'Time::HiRes' => 0,
 );
