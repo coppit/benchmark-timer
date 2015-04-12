@@ -27,6 +27,5 @@
 ^announce.sample$
 ^old/
 \.tar\.gz$
-t/temp/
 ^MYMETA.(json|yml)
 .gitignore
