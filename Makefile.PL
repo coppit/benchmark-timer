@@ -7,6 +7,7 @@ use File::Slurp;
 
 all_from('lib/Benchmark/Timer.pm');
 
+auto_set_bugtracker;
 githubmeta;
 
 include(
