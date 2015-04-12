@@ -54,7 +54,7 @@ Just "perldoc Benchmark::Timer". After installation on Unix systems,
 you can also do "man Benchmark::Timer".
 
 
-HOMEPAGE
+RESOURCES
 
 The CPAN Page:
 http://search.cpan.org/~dcoppit/Benchmark-Timer/
@@ -62,10 +62,8 @@ http://search.cpan.org/~dcoppit/Benchmark-Timer/
 The GitHub page:
 https://github.com/coppit/benchmark-timer/
 
-
-REPORTING BUGS
-
-https://github.com/coppit/benchmark-timer/issues
+Bug and feature tracking:
+http://rt.cpan.org/Public/Dist/Display.html?Name=Benchmark-Timer
 
 
 COPYRIGHT
