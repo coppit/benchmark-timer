@@ -25,4 +25,7 @@ include(
 
 no_index('delta.pl');
 
+license 'gpl2';
+auto_license(holder => 'David Coppit');
+
 WriteAll();
