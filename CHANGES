@@ -1,3 +1,7 @@
+Version 0.7105:
+- Make basic.t 'Nonzero single result' test reliable
+  http://www.cpantesters.org/cpan/report/abcfc65a-de71-11e4-a1d1-8536eb4f9f07
+
 Version 0.7104: Sat Apr 4 2015
 - Bundle Module::AutoInstall to prevent breaks when people don't have it
   installed already. Thanks to Andreas Koenig <andk@cpan.org> for the report,

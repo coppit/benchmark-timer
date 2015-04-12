@@ -15,6 +15,7 @@
 
 use strict;
 use Test::More tests => 11;
+use Time::HiRes;
 
 # 1
 BEGIN { use_ok( 'Benchmark::Timer') }
@@ -32,7 +33,12 @@ $t->reset;
 #3
 ok(1, 'reset');
 
+my $before = [ Time::HiRes::gettimeofday ];    # minimize overhead
+
 $t->start('tag');
+while (Time::HiRes::tv_interval($before, [Time::HiRes::gettimeofday]) == 0) {
+  Time::HiRes::usleep(10);
+}
 $t->stop;
 
 #4
