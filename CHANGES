@@ -1,4 +1,7 @@
-Version 0.7105:
+Version 0.7106:
+- Clarify licensing terms
+
+Version 0.7105: Sun Apr 12 2015
 - Make basic.t 'Nonzero single result' test reliable
   http://www.cpantesters.org/cpan/report/abcfc65a-de71-11e4-a1d1-8536eb4f9f07
 - Enable verbose testing for CPAN-testers

@@ -560,9 +560,8 @@ little better if you apply statistics.
 
 =head1 LICENSE
 
-This code is distributed under the GNU General Public License (GPL). See the
-file LICENSE in the distribution, http://www.opensource.org/gpl-license.html,
-and http://www.opensource.org/.
+This code is distributed under the GNU General Public License (GPL) Version 2.
+See the file LICENSE in the distribution for details.
 
 =head1 AUTHOR
 
