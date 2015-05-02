@@ -24,6 +24,7 @@ check_optional('Statistics::PointEstimation' => 0,
   "Install Statistics::PointEstimation for statistical sampling support\n");
 
 no_index('delta.pl');
+no_index 'directory' => 'private-lib';
 
 license 'gpl2';
 auto_license(holder => 'David Coppit');

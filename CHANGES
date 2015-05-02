@@ -1,3 +1,6 @@
+Version 0.7107:
+- Prevent CPAN from indexing private-lib
+
 Version 0.7106: Mon Apr 20 2015
 - Clarify licensing terms
 - Move verbose testing to a private module, and implement it in a way that
