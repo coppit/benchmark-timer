@@ -4,6 +4,7 @@
 ,v$
 \B\.svn\b
 \B\.git\b
+^\.gitignore$
 
 # Makemaker generated files and dirs.
 ^MANIFEST\.
@@ -31,4 +32,3 @@ t/000_standard__
 ^old/
 \.tar\.gz$
 ^MYMETA.(json|yml)
-.gitignore
