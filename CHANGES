@@ -1,3 +1,6 @@
+Version 0.7109:
+- Add missing URI::Escape dependency
+
 Version 0.7108:
 - Add standard tests
 - Fix compatibility issue with newer versions of perl, which remove "." from

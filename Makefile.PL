@@ -13,6 +13,11 @@ all_from('lib/Benchmark/Timer.pm');
 auto_set_bugtracker;
 githubmeta;
 
+configure_requires(
+  # Module::Install::Bugtracker needs this
+  'URI::Escape' => 0,
+);
+
 requires(
   'Time::HiRes' => 0,
 );
