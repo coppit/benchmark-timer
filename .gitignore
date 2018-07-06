@@ -7,4 +7,3 @@ inc/
 /pm_to_blib
 /Benchmark-Timer-*.tar.gz
 **/*.swp
-t/000_standard__*

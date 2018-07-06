@@ -1,5 +1,6 @@
 Version 0.7109:
 - Add missing URI::Escape dependency
+- Check in standard tests, including one that skips the compile check on Windows
 
 Version 0.7108:
 - Add standard tests
